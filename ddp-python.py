@@ -50,15 +50,15 @@ def unsubscribed(subscription):
     client.update('items' , {'name':  'c4:54:44:84:70:b4' }, {'status': 'Not Active'})
 
 def added(collection, id, fields):
-    print('* ADDED {} {}'.format(collection, id))
-    for key, value in fields.items():
-        print('  - FIELD {} {}'.format(key, value))
+    # print('* ADDED {} {}'.format(collection, id))
+    # for key, value in fields.items():
+    #    print('  - FIELD {} {}'.format(key, value))
 
     # query the data each time something has been added to
     # a collection to see the data `grow`
-    all_lists = client.find('items', selector={})
-    print('Items: {}'.format(all_lists))
-    print('Num Items: {}'.format(len(all_lists)))
+    # all_lists = client.find('items', selector={})
+    # print('Items: {}'.format(all_lists))
+    # print('Num Items: {}'.format(len(all_lists)))
 
     # if collection == 'list' you could subscribe to the list here
     # with something like
@@ -175,7 +175,8 @@ while True:
                 timenow = time.asctime( time.localtime(time.time()) )
                 if humidity is not None and temperature is not None:
                     print 'Temp={0:0.1f}*C  Humidity={1:0.1f}%'.format(temperature, humidity)
-                    client.insert('sensors', {'name': 'DHT11 SENSOR 1' ,'temperature':  temperature ,   'humidity': humidity , 'time': timenow})
+                    #client.insert('sensors', {'name': 'DHT11 SENSOR 1' ,'temperature':  temperature ,   'humidity': humidity , 'time': timenow})
+                    client.call('sensordata' , [temperature, humidity])
                 else:
                     print 'Failed to get reading. Try again!'
                 a = 0  
