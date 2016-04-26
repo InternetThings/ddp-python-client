@@ -22,7 +22,7 @@ from MeteorClient import MeteorClient
 
 
 
-client = MeteorClient('ws://127.0.0.1:3000/websocket')
+client = MeteorClient('ws://localhost:3030/websocket')
 #client = MeteorClient('ws://user-status.meteor.com/websocket')
 
 def subscribed(subscription):
